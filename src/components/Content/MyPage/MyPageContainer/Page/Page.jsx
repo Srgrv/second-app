@@ -5,12 +5,12 @@ let Page = (props) => {
   console.log(props);
   let post = props.myPost.map((item, index) => {
     return (
-      <div key={index}>
-        <div>
+      <div key={index} className={classes.postWrapper}>
+        <div className={classes.onePost}>
           <img src="../../../../../../logo192.png" alt="picture" />
         </div>
 
-        <div>{item}</div>
+        <div className={classes.twoPost}>{item}</div>
       </div>
     );
   });

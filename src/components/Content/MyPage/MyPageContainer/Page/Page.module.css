@@ -24,3 +24,23 @@
   grid-area: p;
   background-color: cadetblue;
 }
+
+.postWrapper {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  grid-template-areas: "o t";
+}
+
+.onePost {
+  grid-area: o;
+
+  margin-bottom: 10px;
+}
+
+.onePost > img {
+  width: 140px;
+}
+
+.twoPost {
+  grid-area: t;
+}
