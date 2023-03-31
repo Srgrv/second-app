@@ -14,8 +14,8 @@ class MyPageContainer extends React.Component {
 
 let mapStateToProps = (state) => {
   return {
-    a: state.myPage.a,
-    b: state.myPage.b,
+    data: state.myPage.data,
+    myPost: state.myPage.myPost,
   };
 };
 
