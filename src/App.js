@@ -1,5 +1,6 @@
 import "./App.css";
 import MyPage from "./components/Content/MyPage/MyPage";
+import MyFriends from "./components/Content/MyFriends/MyFriends";
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -13,6 +14,7 @@ function App() {
         <div className="Content">
           <Routes>
             <Route path="/myPage" element={<MyPage />} />
+            <Route path="/myFriends" element={<MyFriends />} />
           </Routes>
         </div>
       </div>
