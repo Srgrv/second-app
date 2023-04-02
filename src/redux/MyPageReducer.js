@@ -3,7 +3,7 @@ let ADD = "ADD";
 
 let initialState = {
   myPost: [],
-  input: "write the word",
+  input: "",
   data: {
     aboutMe: "Халоу",
     contacts: {
