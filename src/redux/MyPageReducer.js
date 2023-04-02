@@ -1,6 +1,9 @@
+let CHANGE_INPUT = "CHANGE_INPUT";
+let ADD = "ADD";
+
 let initialState = {
-  myPost: ["It is me", "hello world"],
-  b: "World",
+  myPost: [],
+  input: "write the word",
   data: {
     aboutMe: "Халоу",
     contacts: {
@@ -28,9 +31,21 @@ let initialState = {
 
 let MyPageReducer = (state = initialState, action) => {
   switch (action.type) {
+    case CHANGE_INPUT:
+      return { ...state, input: action.value };
+    case ADD:
+      return { ...state, myPost: [...state.myPost, state.input] };
     default:
       return state;
   }
+};
+
+export let changeInput = (value) => {
+  return { type: CHANGE_INPUT, value };
+};
+
+export let add = () => {
+  return { type: ADD };
 };
 
 export default MyPageReducer;
