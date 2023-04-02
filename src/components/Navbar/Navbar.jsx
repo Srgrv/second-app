@@ -6,7 +6,7 @@ let Navbar = () => {
   return (
     <div className={classes.navbar}>
       <NavLink to="myPage">Моя Страница</NavLink>
-      <NavLink to="myFriend">Мои Друзья</NavLink>
+      <NavLink to="myFriends">Мои Друзья</NavLink>
     </div>
   );
 };
