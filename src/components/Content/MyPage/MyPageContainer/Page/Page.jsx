@@ -15,6 +15,14 @@ let Page = (props) => {
     );
   });
 
+  let changeInput = (event) => {
+    props.changeInput(event.target.value);
+  };
+
+  let add = () => {
+    props.add();
+  };
+
   return (
     <div className={classes.wrapper}>
       <div className={classes.avatar}>
@@ -37,8 +45,8 @@ let Page = (props) => {
         </div>
       </div>
       <div className={classes.newPost}>
-        <input />
-        <button>add</button>
+        <input value={props.input} onChange={changeInput} />
+        <button onClick={add}>add</button>
       </div>
       <div className={classes.post}>{post}</div>
     </div>
