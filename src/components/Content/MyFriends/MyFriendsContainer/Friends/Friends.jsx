@@ -3,6 +3,7 @@ import classes from "./Friends.module.css";
 import { NavLink } from "react-router-dom";
 
 let Friends = (props) => {
+  console.log(props);
   return (
     <div>
       {props.data.map((item, index) => {
@@ -19,6 +20,23 @@ let Friends = (props) => {
               />
             </NavLink>
             <div className={classes.two}>{item.name}</div>
+
+            <div>
+              {" "}
+              {item.followed ? (
+                <button
+                  onClick={() => {
+                    props.setUnfollowed(item.id);
+                  }}
+                >
+                  Unfollow
+                </button>
+              ) : (
+                <button onClick={() => props.setFollowed(item.id)}>
+                  Follow
+                </button>
+              )}
+            </div>
           </div>
         );
       })}
