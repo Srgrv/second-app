@@ -3,10 +3,10 @@ let SET_PAGE = "SET_PAGE";
 let SET_DATA = "SET_DATA";
 
 let initialState = {
-  data: [],
-  totalCount: 1000,
   count: 100,
+  data: [],
   page: 5,
+  totalCount: 1000,
 };
 
 let MyFriendsReducer = (state = initialState, action) => {
