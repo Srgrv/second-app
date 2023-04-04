@@ -6,6 +6,8 @@ import axios from "axios";
 import { setTotalCount } from "../../../../redux/MyFriendsReducer";
 import { setPage } from "../../../../redux/MyFriendsReducer";
 import { setData } from "../../../../redux/MyFriendsReducer";
+import { setFollowed } from "../../../../redux/MyFriendsReducer";
+import { setUnfollowed } from "../../../../redux/MyFriendsReducer";
 import classes from "./MyFriendsContainer.module.css";
 
 class MyFriendsContainer extends React.Component {
@@ -15,6 +17,7 @@ class MyFriendsContainer extends React.Component {
         `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.count}&page=${this.props.page}`
       )
       .then((response) => {
+        console.log(response);
         this.props.setData(response.data.items);
         this.props.setTotalCount(response.data.totalCount);
       });
@@ -64,9 +67,14 @@ let mapStateToProps = (state) => {
     totalCount: state.myFriends.totalCount,
     count: state.myFriends.count,
     page: state.myFriends.page,
+    followed: state.myFriends.followed,
   };
 };
 
-export default connect(mapStateToProps, { setTotalCount, setPage, setData })(
-  MyFriendsContainer
-);
+export default connect(mapStateToProps, {
+  setTotalCount,
+  setPage,
+  setData,
+  setFollowed,
+  setUnfollowed,
+})(MyFriendsContainer);
