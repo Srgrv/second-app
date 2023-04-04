@@ -9,6 +9,19 @@ class MyPageContainer extends React.Component {
   componentDidMount() {
     let userId = this.props.router.params.id;
 
+    if (!userId) {
+      userId = 9;
+    }
+
+    axios
+      .get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
+      .then((response) => {
+        this.props.setUser(response.data);
+      });
+  }
+
+  componentDidUpdate() {
+    let userId = this.props.router.params.id;
     console.log(userId);
     if (!userId) {
       userId = 9;
@@ -22,6 +35,7 @@ class MyPageContainer extends React.Component {
   }
 
   render() {
+    console.log("render");
     return (
       <>
         <Page {...this.props} />
