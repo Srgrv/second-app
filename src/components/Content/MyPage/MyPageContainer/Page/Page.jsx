@@ -2,7 +2,6 @@ import React from "react";
 import classes from "./Page.module.css";
 
 let Page = (props) => {
-  console.log(props);
   let post = props.myPost.map((item, index) => {
     return (
       <div key={index} className={classes.postWrapper}>
@@ -26,22 +25,29 @@ let Page = (props) => {
   return (
     <div className={classes.wrapper}>
       <div className={classes.avatar}>
-        <img src={props.data.photos.large} alt="picture" />
+        <img
+          src={
+            props.user.photos.large
+              ? props.user.photos.large
+              : "../../../../../../logo192.png"
+          }
+          alt=""
+        />
       </div>
       <div className={classes.contacts}>
         <h3>Обо мне</h3>
-        <div>Я: {props.data.aboutMe}</div>
-        <div>Facebook: {props.data.contacts.facebook}</div>
-        <div>Github: {props.data.contacts.github}</div>
-        <div>Instagram: {props.data.contacts.instagram}</div>
-        <div>MainLink: {props.data.contacts.mainLink}</div>
-        <div>Twitter: {props.data.contacts.twitter}</div>
-        <div>VK: {props.data.contacts.vk}</div>
-        <div>FullName: {props.data.fullName}</div>
-        <div>Website: {props.data.contacts.website}</div>
+        <div>Я: {props.user.aboutMe}</div>
+        <div>Facebook: {props.user.contacts.facebook}</div>
+        <div>Github: {props.user.contacts.github}</div>
+        <div>Instagram: {props.user.contacts.instagram}</div>
+        <div>MainLink: {props.user.contacts.mainLink}</div>
+        <div>Twitter: {props.user.contacts.twitter}</div>
+        <div>VK: {props.user.contacts.vk}</div>
+        <div>FullName: {props.user.fullName}</div>
+        <div>Website: {props.user.contacts.website}</div>
 
         <div>
-          LookingForAJobDescription: {props.data.lookingForAJobDescription}
+          LookingForAJobDescription: {props.user.lookingForAJobDescription}
         </div>
       </div>
       <div className={classes.newPost}>
