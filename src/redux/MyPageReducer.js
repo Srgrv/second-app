@@ -1,10 +1,11 @@
 let CHANGE_INPUT = "CHANGE_INPUT";
 let ADD = "ADD";
+let SET_USER = "SET_USER";
 
 let initialState = {
   myPost: [],
   input: "",
-  data: {
+  user: {
     aboutMe: "Халоу",
     contacts: {
       facebook: "",
@@ -35,6 +36,8 @@ let MyPageReducer = (state = initialState, action) => {
       return { ...state, input: action.value };
     case ADD:
       return { ...state, myPost: [...state.myPost, state.input] };
+    case SET_USER:
+      return { ...state, user: action.user };
     default:
       return state;
   }
@@ -46,6 +49,10 @@ export let changeInput = (value) => {
 
 export let add = () => {
   return { type: ADD };
+};
+
+export let setUser = (user) => {
+  return { type: SET_USER, user };
 };
 
 export default MyPageReducer;
