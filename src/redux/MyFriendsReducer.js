@@ -1,12 +1,28 @@
 let SET_TOTAL_COUNT = "SET_TOTAL_COUNT";
 let SET_PAGE = "SET_PAGE";
 let SET_DATA = "SET_DATA";
+let SET_FOLLOWED = "SET_FOLLOWED";
+let SET_UNFOLLOWED = "SET_UNFOLLOWED";
 
 let initialState = {
   count: 100,
-  data: [],
+  data: [
+    {
+      id: 1,
+      followed: false,
+      name: "sergey",
+      photos: { small: "../../../../../logo192.png" },
+    },
+    {
+      id: 2,
+      followed: true,
+      name: "alice",
+      photos: { small: "../../../../../logo192.png" },
+    },
+  ],
   page: 5,
   totalCount: 1000,
+  followed: true,
 };
 
 let MyFriendsReducer = (state = initialState, action) => {
@@ -17,6 +33,29 @@ let MyFriendsReducer = (state = initialState, action) => {
       return { ...state, page: action.page };
     case SET_DATA:
       return { ...state, data: action.data };
+    case SET_FOLLOWED:
+      return {
+        ...state,
+        data: state.data.map((item) => {
+          if (item.id === action.userId) {
+            console.log("followed");
+            return { ...item, followed: true };
+          }
+          return item;
+        }),
+      };
+
+    case SET_UNFOLLOWED:
+      return {
+        ...state,
+        data: state.data.map((item) => {
+          if (item.id === action.userId) {
+            console.log("unfollowed");
+            return { ...item, followed: false };
+          }
+          return item;
+        }),
+      };
     default:
       return state;
   }
@@ -32,6 +71,14 @@ export let setPage = (page) => {
 
 export let setData = (data) => {
   return { type: SET_DATA, data };
+};
+
+export let setFollowed = (userId) => {
+  return { type: SET_FOLLOWED, userId };
+};
+
+export let setUnfollowed = (userId) => {
+  return { type: SET_UNFOLLOWED, userId };
 };
 
 export default MyFriendsReducer;
