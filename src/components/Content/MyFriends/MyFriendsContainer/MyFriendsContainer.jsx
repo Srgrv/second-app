@@ -1,7 +1,6 @@
 import React from "react";
 import Friends from "./Friends/Friends";
 import { connect } from "react-redux";
-import axios from "axios";
 
 import { setTotalCount } from "../../../../redux/MyFriendsReducer";
 import { setPage } from "../../../../redux/MyFriendsReducer";
@@ -10,30 +9,21 @@ import { setFollowed } from "../../../../redux/MyFriendsReducer";
 import { setUnfollowed } from "../../../../redux/MyFriendsReducer";
 import classes from "./MyFriendsContainer.module.css";
 
+import { userAPI } from "../../../../API/api";
+
 class MyFriendsContainer extends React.Component {
   componentDidMount() {
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.count}&page=${this.props.page}`,
-        { withCredentials: true }
-      )
-      .then((response) => {
-        console.log(response);
-        this.props.setData(response.data.items);
-        this.props.setTotalCount(response.data.totalCount);
-      });
+    userAPI.getUsers(this.props.count, this.props.page).then((data) => {
+      this.props.setData(data.items);
+      this.props.setTotalCount(data.totalCount);
+    });
   }
 
   changePage(page) {
     this.props.setPage(page);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.count}&page=${this.props.page}`,
-        { withCredentials: true }
-      )
-      .then((response) => {
-        this.props.setData(response.data.items);
-      });
+    userAPI.getUsers(this.props.count, this.props.page).then((data) => {
+      this.props.setData(data.items);
+    });
   }
 
   render() {
