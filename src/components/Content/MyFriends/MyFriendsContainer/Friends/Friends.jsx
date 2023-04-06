@@ -2,6 +2,7 @@ import React from "react";
 import classes from "./Friends.module.css";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import { followAPI } from "../../../../../API/api";
 
 let Friends = (props) => {
   return (
@@ -26,23 +27,11 @@ let Friends = (props) => {
               {item.followed ? (
                 <button
                   onClick={() => {
-                    axios
-                      .delete(
-                        `https://social-network.samuraijs.com/api/1.0/follow/${item.id}`,
-                        {
-                          withCredentials: true,
-                          headers: {
-                            "API-KEY": "6b94c537-c724-4526-abc4-a919bf086fc0",
-                          },
-                        }
-                      )
-                      .then((response) => {
-                        console.log(response);
-                        if (response.data.resultCode === 0) {
-                          console.log("hello");
-                          props.setUnfollowed(item.id);
-                        }
-                      });
+                    followAPI.deleteUnFollow(item.id).then((data) => {
+                      if (data.resultCode === 0) {
+                        props.setUnfollowed(item.id);
+                      }
+                    });
                   }}
                 >
                   Unfollow
@@ -50,22 +39,11 @@ let Friends = (props) => {
               ) : (
                 <button
                   onClick={() => {
-                    axios
-                      .post(
-                        `https://social-network.samuraijs.com/api/1.0/follow/${item.id}`,
-                        {},
-                        {
-                          withCredentials: true,
-                          headers: {
-                            "API-KEY": "6b94c537-c724-4526-abc4-a919bf086fc0",
-                          },
-                        }
-                      )
-                      .then((response) => {
-                        if (response.data.resultCode === 0) {
-                          props.setFollowed(item.id);
-                        }
-                      });
+                    followAPI.postFollow(item.id).then((data) => {
+                      if (data.resultCode === 0) {
+                        props.setFollowed(item.id);
+                      }
+                    });
                   }}
                 >
                   Follow
