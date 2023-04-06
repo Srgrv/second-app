@@ -14,7 +14,8 @@ class MyFriendsContainer extends React.Component {
   componentDidMount() {
     axios
       .get(
-        `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.count}&page=${this.props.page}`
+        `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.count}&page=${this.props.page}`,
+        { withCredentials: true }
       )
       .then((response) => {
         console.log(response);
@@ -27,7 +28,8 @@ class MyFriendsContainer extends React.Component {
     this.props.setPage(page);
     axios
       .get(
-        `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.count}&page=${this.props.page}`
+        `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.count}&page=${this.props.page}`,
+        { withCredentials: true }
       )
       .then((response) => {
         this.props.setData(response.data.items);
