@@ -8,6 +8,7 @@ import { setData } from "../../../../redux/MyFriendsReducer";
 import { setFollowed } from "../../../../redux/MyFriendsReducer";
 import { setUnfollowed } from "../../../../redux/MyFriendsReducer";
 import classes from "./MyFriendsContainer.module.css";
+import { toggleFollowing } from "../../../../redux/MyFriendsReducer";
 
 import { userAPI } from "../../../../API/api";
 
@@ -60,6 +61,7 @@ let mapStateToProps = (state) => {
     count: state.myFriends.count,
     page: state.myFriends.page,
     followed: state.myFriends.followed,
+    following: state.myFriends.following,
   };
 };
 
@@ -69,4 +71,5 @@ export default connect(mapStateToProps, {
   setData,
   setFollowed,
   setUnfollowed,
+  toggleFollowing,
 })(MyFriendsContainer);
