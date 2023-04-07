@@ -3,6 +3,7 @@ let SET_PAGE = "SET_PAGE";
 let SET_DATA = "SET_DATA";
 let SET_FOLLOWED = "SET_FOLLOWED";
 let SET_UNFOLLOWED = "SET_UNFOLLOWED";
+const TOGGLE_FOLLOWING = "TOGGLE_FOLLOWING";
 
 let initialState = {
   count: 100,
@@ -23,6 +24,7 @@ let initialState = {
   page: 5,
   totalCount: 1000,
   followed: true,
+  following: [],
 };
 
 let MyFriendsReducer = (state = initialState, action) => {
@@ -33,6 +35,13 @@ let MyFriendsReducer = (state = initialState, action) => {
       return { ...state, page: action.page };
     case SET_DATA:
       return { ...state, data: action.data };
+    case TOGGLE_FOLLOWING:
+      return {
+        ...state,
+        following: action.following
+          ? [...state.following, action.userId]
+          : state.following.filter((id) => id !== action.userId),
+      };
     case SET_FOLLOWED:
       return {
         ...state,
@@ -80,5 +89,11 @@ export let setFollowed = (userId) => {
 export let setUnfollowed = (userId) => {
   return { type: SET_UNFOLLOWED, userId };
 };
+
+export const toggleFollowing = (following, userId) => {
+  return { type: TOGGLE_FOLLOWING, following, userId };
+};
+
+window.state = initialState;
 
 export default MyFriendsReducer;
